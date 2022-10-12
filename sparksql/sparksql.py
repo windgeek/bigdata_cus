@@ -9,6 +9,7 @@ from pyspark.sql import HiveContext
 
 def spark_query(sparksql):
         conf = SparkConf().setMaster("yarn-client").setAppName("My App").set("user.name", "dp")
+        conf.set("hive.exec.dynamic.partition.mode", "nonstrict")
         sc = SparkContext(conf = conf)
         hive_context = HiveContext(sc)
         # hive_context.sql('select * from td_warehouse.advertiser_cvt').show()
@@ -16,5 +17,5 @@ def spark_query(sparksql):
 
 
 if __name__ == '__main__':
-        spark_query("msck repair table dairy_ftp.yy_user")
+        spark_query('''msck repair table dairy_ftp.yy_user''')
 
