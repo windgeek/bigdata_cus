@@ -2,6 +2,7 @@
 
 spark-submit \
 --master yarn-client \
+--queue online \
 --executor-memory 4G \
 --num-executors 2 \
 --executor-cores 2 \
